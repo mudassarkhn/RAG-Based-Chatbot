@@ -11,14 +11,11 @@ A sophisticated Retrieval-Augmented Generation (RAG) chatbot built with **LangCh
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
 - [API & Services](#api--services)
 - [Key Components](#key-components)
 - [Running the Application](#running-the-application)
-- [Contributing](#contributing)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
+
+
 
 ---
 
@@ -55,15 +52,6 @@ Response
     ↓
 User Interface
 ```
-
-### Architecture Components
-
-1. **Frontend Layer**: Streamlit-based conversational UI
-2. **Chain Layer**: LangChain RAG pipeline orchestration
-3. **Retrieval Layer**: Qdrant vector database with semantic search
-4. **LLM Layer**: Groq API with GPT-OSS-120B model
-5. **Embedding Layer**: HuggingFace sentence transformers
-6. **Memory Layer**: Conversation buffer for context maintenance
 
 ---
 
@@ -274,8 +262,6 @@ The app will open in your default browser at `http://localhost:8501`
 
 ---
 
-## 🔌 API & Services
-
 ### External Services
 
 | Service | Purpose | Free Tier |
@@ -283,12 +269,6 @@ The app will open in your default browser at `http://localhost:8501`
 | **Groq** | Fast LLM inference | Yes (limited) |
 | **Hugging Face** | Embeddings generation | Yes (with token) |
 | **Qdrant** | Vector database | 1 free cluster |
-
-### API Rate Limits
-
-- **Groq**: Check console.groq.com for current limits
-- **Hugging Face**: Endpoint-based usage
-- **Qdrant**: Depends on your cluster plan
 
 ---
 
@@ -304,21 +284,7 @@ The app will open in your default browser at `http://localhost:8501`
 # 4. Memory: Tracks conversation history
 ```
 
-**Key Features:**
-- Maximal Marginal Relevance (MMR) retrieval
-- Top-3 documents retrieved (configurable via `k` parameter)
-- Fetch 10 candidates before ranking (`fetch_k`)
-- Parallel processing with `RunnableParallel`
-
 ### 2. **Frontend (frontend.py)**
-
-**Components:**
-- Page configuration with custom title and icon
-- Chat message display (user and assistant)
-- User input field with context hints
-- Reset chat button
-- Loading spinner during inference
-- Error handling and display
 
 **Session Management:**
 - Stores messages in Streamlit session state
@@ -348,45 +314,6 @@ The app will open in your default browser at `http://localhost:8501`
 - Collection: `Ninesol_Technologies_Knowledge_Base`
 - Uses gRPC for faster communication
 - Authenticated access with API key
-
----
-
-## 🏃 Running the Application
-
-### Development Mode
-
-```bash
-cd app
-streamlit run frontend.py --logger.level=debug
-```
-
-### Production Deployment
-
-```bash
-# Using gunicorn (example)
-streamlit run frontend.py --server.headless true --server.port 8000
-```
-
-### Docker Deployment (Optional)
-
-Create a `Dockerfile`:
-
-```dockerfile
-FROM python:3.12-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY app/ .
-EXPOSE 8501
-CMD ["streamlit", "run", "frontend.py"]
-```
-
-Build and run:
-
-```bash
-docker build -t ninesol-chatbot .
-docker run -p 8501:8501 --env-file .env ninesol-chatbot
-```
 
 ---
 
@@ -423,73 +350,6 @@ LLM Inference (Groq)
 Response Post-processing
     ↓
 Display & Storage
-```
-
-
-## 🚢 Deployment
-
-### Streamlit Cloud
-
-1. Push code to GitHub
-2. Visit [streamlit.io/cloud](https://streamlit.io/cloud)
-3. Create new app pointing to `frontend.py`
-4. Add secrets in dashboard (GROQ_API_KEY, etc.)
-
-### Self-Hosted (Linux/Ubuntu)
-
-```bash
-# Install dependencies
-sudo apt-get update
-sudo apt-get install python3.12 python3.12-venv
-
-# Clone and setup
-git clone <repo> && cd RAG\ Project/app
-python3.12 -m venv botenv
-source botenv/bin/activate
-pip install -r requirements.txt
-
-# Run with systemd
-sudo nano /etc/systemd/system/ninesol-chatbot.service
-```
-
-Systemd service file:
-
-```ini
-[Unit]
-Description=Ninesol Chatbot
-After=network.target
-
-[Service]
-Type=simple
-User=www-data
-WorkingDirectory=/home/user/RAG\ Project/app
-ExecStart=/home/user/RAG\ Project/botenv/bin/streamlit run frontend.py
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
-
-### Code Style
-
-- Follow PEP 8 conventions
-- Use meaningful variable names
-- Add docstrings to functions
-- Include comments for complex logic
-- Test thoroughly before submitting
-
 ---
 
 ## 📧 Support & Contact
@@ -503,13 +363,6 @@ For issues, questions, or suggestions:
 
 ---
 
-## 📚 Additional Resources
-
-- [LangChain Documentation](https://python.langchain.com/)
-- [Streamlit Documentation](https://docs.streamlit.io/)
-- [Qdrant Documentation](https://qdrant.tech/documentation/)
-- [Groq API Reference](https://console.groq.com/docs/)
-- [HuggingFace Transformers](https://huggingface.co/docs/transformers/)
 
 ---
 
