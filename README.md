@@ -1,5 +1,4 @@
 # RAG-Based-Chatbot
-# Ninesol ChatBot - RAG-Powered AI Assistant
 
 A sophisticated Retrieval-Augmented Generation (RAG) chatbot built with **LangChain**, **Streamlit**, and **Qdrant** vector database. This intelligent assistant answers questions specifically about Ninesol Technologies by leveraging advanced language models and contextual information retrieval.
 
